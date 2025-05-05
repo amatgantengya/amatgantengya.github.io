@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dork Generator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-image: url(https://netecapp.com/hqdefault.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        p
+        {
+            color: rgb(0,0,0,1);
+        }
+        h1, h2 {
+            color: rgb(0,0,0,1);
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 1px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+            margin-bottom: 15px;
+            border: 1px solid rgb(0,0,0,1);
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+    background-color: rgb(0,0,0,1);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;}
+    
+       button:hover {background-color: #fff; color:rgb(0,0,0,1);}
+    
+       button:active 
+       {outline: none; background-color: #fff; color: #eee;}
+
+            
+        }
+        #dorkList {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        #dorkList h2 {
+            text-align: left;
+            color: #333;
+            margin-top: 0;
+        }
+        #dorks {
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dork Generator</h1>
+        <p>Gunakan dengan bijak</p>
+
+        <label for="target">Website:</label>
+        <input type="text" id="target" placeholder="targetmu:nasa.gov">
+
+        <label for="keywords">Cari:</label>
+        <textarea id="keywords" placeholder="double:admin,login"></textarea>
+
+        <button onclick="generateDorks()">KLIK</button>
+
+        <div id="dorkList" style="display: none;">
+            <h2>di kopi ya bang cari manual:D</h2>
+            <pre id="dorks"></pre>
+        </div>
+    </div>
+
+            <script>
+        function generateDorks() {
+            const target = document.getElementById("target").value.trim();
+            const keywordsInput = document.getElementById("keywords").value.trim();
+            const keywordsArray = keywordsInput.split(',').map(keyword => keyword.trim()).filter(keyword => keyword !== "");
+            const dorksContainer = document.getElementById("dorks");
+            const dorkListDiv = document.getElementById("dorkList");
+            let dorks = [];
+
+            if (target) {
+                dorks.push(`site:${target} inurl:ko.php`);
+                dorks.push(`site:${target} inurl:kontol.php`);
+                dorks.push(`site:${target} inurl:memek.php`);
+                dorks.push(`site:${target} inurl:shell.php`);
+                dorks.push(`site:${target} inurl:sh.php`);
+                dorks.push(`site:${target} inurl:cmd.php`);
+                dorks.push(`site:${target} inurl:execute.php`);
+                dorks.push(`site:${target} inurl:adminer.php`); 
+                dorks.push(`site:${target} inurl:pma/`); // Direktori phpMyAdmin yang terbuka juga berbahaya
+                dorks.push(`site:${target} filetype:php "<?php" "system("`);
+                dorks.push(`site:${target} filetype:php "<?php" "exec("`);
+                dorks.push(`site:${target} filetype:php "<?php" "passthru("`);
+                dorks.push(`site:${target} filetype:php "<?php" "shell_exec("`);
+                dorks.push(`site:${target} filetype:php "<?php" "@eval($_POST["`);
+                dorks.push(`site:${target} filetype:php "<?php" "@eval($_GET["`);
+                dorks.push(`site:${target} intext:"eval($_POST["`);
+                dorks.push(`site:${target} intext:"eval($_GET["`);
+                dorks.push(`site:${target} intext:"system($_GET["`);
+                dorks.push(`site:${target} intext:"system($_POST["`);
+                dorks.push(`site:${target} intitle:"Web Shell"`);
+                dorks.push(`site:${target} intitle:"Mini Shell"`);
+                dorks.push(`site:${target} intitle:"C99 Shell"`);
+                dorks.push(`site:${target} intitle:"WSO 2.5"`);
+                dorks.push(`site:${target} inurl:wso.php`);
+                dorks.push(`site:${target} inurl:c99.php`);
+                dorks.push(`site:${target} inurl:r57.php`);
+                dorks.push(`site:${target} inurl:locus7.php`);
+                dorks.push(`site:${target} filetype:sql`);
+                dorks.push(`site:${target} filetype:log`);
+                dorks.push(`site:${target} filetype:db`);
+                dorks.push(`site:${target} filetype:backup`);
+                dorks.push(`site:${target} filetype:bak`);
+                dorks.push(`site:${target} filetype:config`);
+                dorks.push(`site:${target} filetype:ini`);
+                dorks.push(`site:${target} filetype:yaml`);
+                dorks.push(`site:${target} filetype:xml`);
+                dorks.push(`site:${target} filetype:json`);
+                dorks.push(`site:${target} filetype:env`);
+                dorks.push(`site:${target} ext:php intitle:phpinfo`);
+                dorks.push(`site:${target} inurl:login`);
+                dorks.push(`site:${target} inurl:register`);
+                dorks.push(`site:${target} inurl:signup`);
+                dorks.push(`site:${target} inurl:panel`);
+                dorks.push(`site:${target} inurl:control`);
+                dorks.push(`site:${target} inurl:dashboard`);
+                dorks.push(`site:${target} inurl:wp-admin`);
+                dorks.push(`site:${target} inurl:/administrator`);
+                dorks.push(`site:${target} "index of /"`);
+                dorks.push(`site:${target} "parent directory"`);
+                dorks.push(`site:${target} error`);
+                dorks.push(`site:${target} "SQL syntax error"`);
+                dorks.push(`site:${target} "Warning: mysqli_"`);
+                dorks.push(`site:${target} "Warning: pg_"`);
+                dorks.push(`site:${target} "Fatal error:"`);
+                dorks.push(`site:${target} "Notice:"`);
+                dorks.push(`site:${target} "Deprecated:"`);
+                dorks.push(`site:${target} intext:"username" intext:"password"`);
+                dorks.push(`site:${target} intext:"user=" intext:"pass="`);
+                dorks.push(`site:${target} intext:"db_host" intext:"db_user" intext:"db_password"`);
+                dorks.push(`site:${target} intext:"root" password`);
+                dorks.push(`site:${target} intext:"secret key"`);
+                dorks.push(`site:${target} intext:"api key"`);
+                dorks.push(`site:${target} intext:"access token"`);
+                dorks.push(`site:${target} intext:"authorization:"`);
+                dorks.push(`site:${target} intext:"bearer "`);
+                dorks.push(`site:${target} inurl:debug=true`);
+                dorks.push(`site:${target} inurl:trace=true`);
+                dorks.push(`site:${target} inurl:profiler=true`);
+                dorks.push(`site:${target} inurl:.git`);
+                dorks.push(`site:${target} inurl:.svn`);
+                dorks.push(`site:${target} inurl:.env`);
+                dorks.push(`site:${target} inurl:web.config`);
+                dorks.push(`site:${target} inurl:htaccess`);
+                dorks.push(`site:${target} inurl:crossdomain.xml`);
+                dorks.push(`site:${target} inurl:sitemap.xml`);
+                dorks.push(`site:${target} inurl:robots.txt`);
+                dorks.push(`site:${target} "Powered by"`);
+                dorks.push(`site:${target} "Powered by WordPress"`);
+                dorks.push(`site:${target} "Powered by Joomla"`);
+                dorks.push(`site:${target} "Powered by Drupal"`);
+                dorks.push(`site:${target} "Powered by Magento"`);
+                dorks.push(`site:${target} "Powered by Shopify"`);
+                dorks.push(`site:${target} "Powered by Prestashop"`);
+                dorks.push(`site:${target} intitle:"Server Status"`);
+                dorks.push(`site:${target} intitle:"phpMyAdmin"`);
+                dorks.push(`site:${target} intitle:"Web Server's Default Page"`);
+                dorks.push(`site:${target} intitle:"IIS7"`);
+                dorks.push(`site:${target} intitle:"Welcome to nginx!"`);
+                dorks.push(`site:${target} inurl:/cgi-bin/`);
+                dorks.push(`site:${target} ext:sh`);
+                dorks.push(`site:${target} ext:bashrc`);
+                dorks.push(`site:${target} ext:htpasswd`);
+                dorks.push(`site:${target} ext:sql.gz`);
+                dorks.push(`site:${target} ext:db.gz`);
+                dorks.push(`site:${target} ext:log.gz`);
+                dorks.push(`site:${target} "backup of"`);
+                dorks.push(`site:${target} "old version of"`);
+                dorks.push(`site:${target} "deprecated function"`);
+                dorks.push(`site:${target} "sensitive data"`);
+                dorks.push(`site:${target} "internal server error"`);
+                dorks.push(`site:${target} "not found"`);
+                dorks.push(`site:${target} "forbidden"`);
+                dorks.push(`site:${target} "unauthorized"`);
+                dorks.push(`site:${target} inurl:api`);
+                dorks.push(`site:${target} inurl:v1`);
+                dorks.push(`site:${target} inurl:v2`);
+                dorks.push(`site:${target} inurl:rest`);
+                dorks.push(`site:${target} inurl:graphql`);
+                dorks.push(`site:${target} "swagger"`);
+                dorks.push(`site:${target} "openapi"`);
+                dorks.push(`site:${target} inurl:upload`);
+                dorks.push(`site:${target} inurl:download`);
+                dorks.push(`site:${target} inurl:shell`);
+                dorks.push(`site:${target} inurl:exec`);
+                dorks.push(`site:${target} inurl:eval`);
+                dorks.push(`site:${target} inurl:system`);
+                dorks.push(`site:${target} inurl:cmd`);
+                dorks.push(`site:${target} "Mini Shell"`);
+                dorks.push(`site:${target} "php shell"`);
+                dorks.push(`site:${target} "c99 shell"`);
+                dorks.push(`site:${target} "wso shell"`);
+                dorks.push(`site:${target} "r57 shell"`);
+                dorks.push(`site:${target} intext:"Configuration File"`);
+                dorks.push(`site:${target} intext:"Database Credentials"`);
+                dorks.push(`site:${target} intext:"SMTP Settings"`);
+                dorks.push(`site:${target} intext:"AWS Access Key ID"`);
+                dorks.push(`site:${target} intext:"AWS Secret Access Key"`);
+                dorks.push(`site:${target} intext:"Google API Key"`);
+                dorks.push(`site:${target} intext:"Facebook App Secret"`);
+                dorks.push(`site:${target} intext:"client_secret"`);
+                dorks.push(`site:${target} intext:"private_key"`);
+                dorks.push(`site:${target} "internal use only"`);
+                dorks.push(`site:${target} "confidential"`);
+                dorks.push(`site:${target} "private"`);
+                dorks.push(`site:${target} "sensitive"`);
+                dorks.push(`site:${target} "do not share"`);
+                dorks.push(`site:${target} "backup Jan"`);
+                dorks.push(`site:${target} "backup Feb"`);
+                dorks.push(`site:${target} "backup Mar"`);
+                dorks.push(`site:${target} "backup Apr"`);
+                dorks.push(`site:${target} "backup May"`);
+                dorks.push(`site:${target} "backup Jun"`);
+                dorks.push(`site:${target} "backup Jul"`);
+                dorks.push(`site:${target} "backup Aug"`);
+                dorks.push(`site:${target} "backup Sep"`);
+                dorks.push(`site:${target} "backup Oct"`);
+                dorks.push(`site:${target} "backup Nov"`);
+                dorks.push(`site:${target} "backup Dec"`);
+                dorks.push(`site:${target} inurl:old`);
+                dorks.push(`site:${target} inurl:vulnerable`);
+                dorks.push(`site:${target} inurl:test`);
+                dorks.push(`site:${target} inurl:dev`);
+                dorks.push(`site:${target} inurl:staging`);
+                dorks.push(`site:${target} inurl:beta`);
+                dorks.push(`site:${target} inurl:~`);
+                dorks.push(`site:${target} inurl:.bak`);
+                dorks.push(`site:${target} inurl:.old`);
+                dorks.push(`site:${target} inurl:.tmp`);
+                dorks.push(`site:${target} inurl:.swp`);
+                dorks.push(`site:${target} "deprecated code"`);
+                dorks.push(`site:${target} "legacy code"`);
+                dorks.push(`site:${target} "outdated version"`);
+                dorks.push(`site:${target} "vulnerable component"`);
+                dorks.push(`site:${target} "security misconfiguration"`);
+                dorks.push(`site:${target} "cross site scripting"`);
+                dorks.push(`site:${target} "sql injection"`);
+                dorks.push(`site:${target} "remote code execution"`);
+                dorks.push(`site:${target} "local file inclusion"`);
+                dorks.push(`site:${target} "remote file inclusion"`);
+                dorks.push(`site:${target} "server side request forgery"`);
+                dorks.push(`site:${target} "directory traversal"`);
+                dorks.push(`site:${target} "open redirect"`);
+                dorks.push(`site:${target} "information disclosure"`);
+                dorks.push(`site:${target} "sensitive information exposure"`);
+
+                keywordsArray.forEach(keyword => {
+                    dorks.push(`site:${target} inurl:${keyword}`);
+                    dorks.push(`site:${target} intitle:${keyword}`);
+                    dorks.push(`site:${target} intext:${keyword}`);
+                    dorks.push(`site:${target} ext:${keyword}`);
+                });
+            } else {
+                alert("Masukkan Website.");
+                alert("Masukkan Website..");
+                return;
+            }
+
+            dorksContainer.textContent = dorks.join('\n');
+            dorkListDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
