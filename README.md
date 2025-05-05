@@ -1,1 +1,0 @@
-# amatgantengya.github.io df
