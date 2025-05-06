@@ -24,7 +24,7 @@
             <label for="hackedUrl">URL Situs yang Diretas:</label>
             <input type="text" id="hackedUrl" placeholder="Masukkan URL di sini">
         </div>
-        <button onclick="simpanArchiveBaru()">Tambahkan Archive Baru</button>
+        <button id="tambahArchiveBtn">Tambahkan Archive Baru</button>
     </div>
 
     <div class="output-container">
@@ -131,6 +131,10 @@
       }
 
       window.addEventListener('load', muatSemuaArchive);
+
+      // Dapatkan referensi ke tombol dan tambahkan event listener
+      const tambahArchiveBtn = document.getElementById('tambahArchiveBtn');
+      tambahArchiveBtn.addEventListener('click', simpanArchiveBaru);
     </script>
 </body>
 </html>
