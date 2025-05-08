@@ -1,1 +1,131 @@
-<h1>Ini di dalam folder notif</h1>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirim Informasi</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+          color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="text"],
+        textarea {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Notif Mirror</h2>
+        <p>situs ini masi dalam tahap perkembangan</p>
+        <form id="submitForm">
+            <div>
+                <label for="attacker">Nama atau Tim Penyerang:</label>
+                <input type="text" id="attacker" name="attacker" required>
+            </div>
+            <div>
+                <label for="poc">Bukti Serangan (PoC):</label>
+                <textarea id="poc" name="poc" rows="4" required></textarea>
+            </div>
+            <div>
+                <label for="team">Tim Anda (Jika Ada):</label>
+                <input type="text" id="team" name="team">
+            </div>
+            <div>
+                <label for="url">URL Website yang Diretas:</label>
+                <input type="text" id="url" name="url" required>
+            </div>
+            <button type="submit">Submit Informasi</button>
+        </form>
+    </div>
+
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhc9q5m-3mymmEPtCo_cccTXCqSCGdpqA",
+            authDomain: "hacker-archive.firebaseapp.com",
+            databaseURL: "https://hacker-archive-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "hacker-archive",
+            storageBucket: "hacker-archive.firebasestorage.app",
+            messagingSenderId: "597551731880",
+            appId: "1:597551731880:web:c55a2afda60e33b56c5e9d",
+            measurementId: "G-B23YFLQ7RS"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const submissionsRef = ref(database, 'submissions');
+
+        document.getElementById('submitForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const attacker = document.getElementById('attacker').value;
+            const poc = document.getElementById('poc').value;
+            const team = document.getElementById('team').value;
+            const url = document.getElementById('url').value;
+
+            const newData = {
+                attacker: attacker,
+                poc: poc,
+                team: team,
+                url: url,
+                timestamp: new Date().toISOString()
+            };
+
+            // Push data to Firebase
+            push(submissionsRef, newData)
+                .then((snapshot) => {
+                    console.log('Data berhasil dikirim dengan ID:', snapshot.key);
+                    alert('Informasi berhasil dikirim. Terima kasih!');
+                    document.getElementById('submitForm').reset();
+                })
+                .catch((error) => {
+                    console.error('Error mengirim data:', error);
+                    alert('Terjadi kesalahan saat mengirim informasi.');
+                });
+        });
+    </script>
+</body>
+</html>
