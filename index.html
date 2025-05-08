@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #e9ecef;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+        }
+        li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        li a:hover {
+            text-decoration: underline;
+        }
+        .info {
+            margin-bottom: 5px;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Attacker Defacer</h2>
+        <ul id="submissionsList">
+            </ul>
+    </div>
+
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhc9q5m-3mymmEPtCo_cccTXCqSCGdpqA",
+            authDomain: "hacker-archive.firebaseapp.com",
+            databaseURL: "https://hacker-archive-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "hacker-archive",
+            storageBucket: "hacker-archive.firebasestorage.app",
+            messagingSenderId: "597551731880",
+            appId: "1:597551731880:web:c55a2afda60e33b56c5e9d",
+            measurementId: "G-B23YFLQ7RS"
+        };
+
+        // Initialize 
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const submissionsRef = ref(database, 'submissions');
+        const submissionsList = document.getElementById('submissionsList');
+
+        // Listen for changes in the 'submissions' node
+        onValue(submissionsRef, (snapshot) => {
+            submissionsList.innerHTML = ''; // Clear existing list
+
+            snapshot.forEach((childSnapshot) => {
+                const key = childSnapshot.key;
+                const data = childSnapshot.val();
+
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <p class="info"><strong>Nama/Tim:</strong> ${data.attacker || '-'}</p>
+                    <p class="info"><strong>URL:</strong> ${data.url || '-'}</p>
+                    <a href="detail.html?id=${key}">Lihat Detail</a>
+                `;
+                submissionsList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
